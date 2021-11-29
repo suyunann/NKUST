@@ -18,7 +18,7 @@ public class UnHash {
         ArrayList <Character> contray = new ArrayList<Character>();
         long a = 6933552791181934L;
         long b ;
-        //String c = "";
+
         for (int i = 0; i <= letters.length() ; i++) {
             b = (a - i) % 23 ;
             if (b == 0){
