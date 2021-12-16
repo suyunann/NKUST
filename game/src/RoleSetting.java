@@ -1,4 +1,5 @@
 public class RoleSetting {
+    //nand
     String name;
     int hp;
     int atk;
