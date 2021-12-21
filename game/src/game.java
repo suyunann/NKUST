@@ -5,10 +5,7 @@ public class game {
         Game_role_setting Mage = new Game_role_setting("魔法師", 60, 70, 100, "法杖", "火焰雨", "冰霜雨");
 
         Archer.ShoutMyName();
-
         Berserker.ShoutMyName();
-
-        Mage.ShoutMyName();
-        //test26+25+gir
+        Mage.ShoutMyName();//000000hoooong
     }
 }
