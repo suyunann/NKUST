@@ -4,7 +4,7 @@ public class game {
         Game_role_setting Berserker = new Game_role_setting("狂戰士", 150, 60, 10, "戰斧", "衝鋒", "旋風斬");
         Game_role_setting Mage = new Game_role_setting("魔法師", 60, 70, 100, "法杖", "火焰雨", "冰霜雨");
 
-        Archer.ShoutMyName();
+        Archer.ShoutMyName();//1222
         Berserker.ShoutMyName();
         Mage.ShoutMyName();//000000hoooong
     }
