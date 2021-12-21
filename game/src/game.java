@@ -8,6 +8,6 @@ public class game {
 
         Berserker.ShoutMyName();
 
-        Mage.ShoutMyName();//
+        Mage.ShoutMyName();//cloud:D
     }
 }
