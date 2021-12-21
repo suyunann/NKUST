@@ -6,6 +6,6 @@ public class game {
 
         Archer.ShoutMyName();
         Berserker.ShoutMyName();
-        Mage.ShoutMyName();//000000123
+        Mage.ShoutMyName();//000000hoooong
     }
 }
