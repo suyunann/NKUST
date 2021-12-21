@@ -8,6 +8,10 @@ public class game {
 
         Berserker.ShoutMyName();
 
+
         Mage.ShoutMyName();//000000
+
+
+
     }
 }
