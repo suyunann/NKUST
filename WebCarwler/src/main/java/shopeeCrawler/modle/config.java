@@ -1,6 +1,9 @@
 package shopeeCrawler.modle;
 
-public class config {
+import java.util.Map;
+
+public final class config {
+    public static final String Shopee_Url = "https://shopee.tw/";
 
 }
 
