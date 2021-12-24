@@ -28,4 +28,10 @@ public class Content {
     public String getPrice() {
         return Price;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Content{Url='%s',MerchandiseName='%s',Rate='%s',Price='%s'}",Url,MerchandiseName,Rate,Price);
+    }
+
 }
