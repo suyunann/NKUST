@@ -23,7 +23,11 @@ public class Content {
         this.cusRate = cusRate;
     }
 
+
+
+
     public String getUrl() {
+
         return Url;
     }
 
@@ -32,6 +36,7 @@ public class Content {
     }
 
     public String getRate() {
+
         return Rate;
     }
 
@@ -51,9 +56,5 @@ public class Content {
         return cusRate;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Content{Url='%s',MerchandiseName='%s',Rate='%s',RateStar='%s',Price='%s',Size'%s',cusRate'%s'}", Url, MerchandiseName, Rate, RateStar, Price, Size, cusRate);
-    }
 
 }
