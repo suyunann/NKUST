@@ -1,47 +1,19 @@
-import java.util.*;
-import config.config;
-import shopeeCrawler.modle.*;
-
-import okhttp3.*;
-import org.jsoup.*;
-import org.jsoup.nodes.*;
-
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 
 public class main {
 
-    private OkHttpClient okHttpClient;
-    private final Map<String, List<Cookie>> cookieStore; // 保存 Cookie
-    private final CookieJar cookieJar;
-    public main() throws IOException {
-        /* 初始化 */
-        cookieStore = new HashMap<>();
-        cookieJar = new CookieJar() {
-            /* 保存每次伺服器端回傳的 Cookie */
-            @Override
-            public void saveFromResponse(HttpUrl httpUrl, List<Cookie> list) {
-                List<Cookie> cookies = cookieStore.getOrDefault(httpUrl.host(), new ArrayList<>());
-                cookies.addAll(list);
-                cookieStore.put(httpUrl.host(), cookies);
-            }
 
-            /* 每次發送帶上儲存的 Cookie */
-            @Override
-            public List<Cookie> loadForRequest(HttpUrl httpUrl) {
-                return cookieStore.getOrDefault(httpUrl.host(), new ArrayList<>());
-            }
-        };
-        okHttpClient = new OkHttpClient.Builder().cookieJar(cookieJar).build();
+    /*
+        熱銷商品 標題 div class為：col-xs-2 shop-collection-view__item (熱銷商品大標題
+        商品名稱 標題 div class為：_1sRyv_ _3hk8j-  (復古中性灰色. . .
+                                _1IcbLB _3EKBtk
+        商品價格 標題 div class為：_2NLalK (3280$
+        商品銷量 標題 div class為：_1D2Rg- FEQyr0 (已售出 321
 
-        /* 獲得網站的初始 Cookie */
-        Request request = new Request.Builder().get().url(config.Shopee_Url).build();
-        okHttpClient.newCall(request).execute();
+
+     */
+
+
     }
-
-}
 
 
 
