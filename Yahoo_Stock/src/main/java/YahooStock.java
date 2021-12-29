@@ -1,0 +1,129 @@
+import com.sun.tools.jconsole.JConsolePlugin;
+import org.json.JSONArray;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.json.*;
+import javax.print.Doc;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+import java.nio.charset.StandardCharsets;
+
+/*
+https://tw.stock.yahoo.com/    Yahoo 股市//第一層
+
+        https://tw.stock.yahoo.com/class/ 上市類股//第二層
+
+        https://tw.stock.yahoo.com/class-quote?sectorId=40&exchange=TAI     半導體分類行情//第三層
+
+
+        https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=AAPL%2CBTC-USD%2CEURUSD%3DX  Yahoo Finance API
+        X-API-KEY: Xgz6obG7Nl4G8hS3I81eP1A4qr4OlTCq9DMoI0t0
+
+        */
+
+   /*API endpoints
+The Yahoo Finance API provides 11 endpoints, each of which covers a specific feature that you can use:
+/v6/finance/quote - real time quote data for stocks, ETFs, mutuals funds, bonds, crypto and national currencies.
+/v7/finance/options - option chains data for a particular stock market company
+/v8/finance/spark - historical data for various intervals and ranges
+/v11/finance/quoteSummary - very detailed information for a particular ticker symbol
+/v8/finance/chart - chart data
+/v6/finance/recommendationsbysymbol - list of similar stocks
+/ws/screeners/v1/finance/screener/predefined/saved - list of most added stocks to the watchlist
+/ws/insights/v1/finance/insights - research insights
+/v6/finance/autocomplete - auto complete stock suggestions
+/v6/finance/quote/marketSummary - live market summary information at the request time
+/v1/finance/trending - trending stocks in a specific region
+
+https://polygon.io/docs/stocks/get_v1_meta_symbols__stocksTicker__company Ticker Details
+https://api.polygon.io/v1/meta/symbols/AAPL/company?apiKey=ul8wIcbn2k9cc3xdDNnIbyFNJI3f3yLn APPL
+
+    */
+   public class YahooStock {
+
+
+       public static void main(String[] args) {
+           /*try {
+               //new JSONObject(new JSONTokener(new FileInputStream(new File("path"), "UTF-8")));
+               //new JSONObject(new JSONTokener(new FileReader("path")));
+               String json = Jsoup.connect("https://api.polygon.io/v1/meta/symbols/AAPL/company?apiKey=ul8wIcbn2k9cc3xdDNnIbyFNJI3f3yLn").ignoreContentType(true).execute().body();
+               //format json by https://jsoneditoronline.org/
+               System.out.println(json);
+               JSONArray resArray = new JSONArray(json);
+               for (int i = 0; i < resArray.length(); i++)
+               {
+                   String title = resArray.getJSONObject(i).getString("name");
+                  // String ceo = resArray.getJSONObject(i).getString("ceo");
+                   System.out.println(title);
+                  // System.out.println(ceo);
+               }
+           } catch (Exception e) {
+               System.out.println(e);
+           }
+       }
+   }*/
+
+
+           try {
+               Document doc = Jsoup.connect("https://tw.stock.yahoo.com/ ").get();//首頁
+
+               Elements FirstTitle = doc.getElementsByClass("_yb_sb4pm _yb_18rvs");//首頁Class
+               Element head = FirstTitle.get(0);//存到head變數裡
+                   String title = head.getElementsByClass("_yb_1edlg").get(0).text();//抓"當日行情"標題名稱
+                   Elements FirstTitleName =doc.select ("#ybar-navigation > div > ul > li:nth-child(3) > a");//抓上市類股網址(copy slector)
+                   Element a = FirstTitleName.get(0);//存到a變數裡
+               System.out.println("標題："+title);
+               Document doc1 = Jsoup.connect(a.absUrl("href")).get();//從變數a裡提取"當日行情"網址
+
+                   Elements SecondTitleName = doc1.select("#LISTED_STOCK > div > ul > li:nth-child(3) > div:nth-child(4) > a");//抓"半導體"網址
+                   Element b = SecondTitleName.get(0);//存入變數b裡
+
+
+               Document doc2  = Jsoup.connect(b.absUrl("href")).get();//半導體頁面
+                    Elements ThirdTitleName=doc2.select("#main-1-ClassQuotesTable-Proxy");//要抓的資料迴圈
+
+
+
+               for (Element c : ThirdTitleName) {
+
+                   String StockName = c.getElementsByClass("Lh(20px) Fw(600) Fz(16px) Ell").get(0).text();//股票名字
+                   String StockCodeNum = c.getElementsByClass("Fz(14px) C(#979ba7) Ell").get(0).text();//股票代號
+                   String StockPrice = c.getElementsByClass("Jc(fe) Fw(600) D(f) Ai(c) C($c-trend-down)").get(0).text();//股價
+                   String StockUpandDown = c.getElementsByClass("Fw(600) Jc(fe) D(f) Ai(c) C($c-trend-down)").get(0).text();//漲跌(!!!待修) 需判斷漲跌
+
+                   String StockPercentage = c.getElementsByClass("").get(0).text();//漲跌趴數(一樣待修
+                   String StockOpening = c.getElementsByTag("").get(0).text();
+                   String StockClosing = c.getElementsByClass("").get(0).text();
+                   String StockHighest = c.getElementsByClass("").get(0).text();
+                   System.out.println(StockPrice);
+
+
+
+               }
+
+
+
+
+
+                   //String urlName = head.getElementsByClass("board-name").get(0).text();////get next page's URL name;//"Baseball";//
+                   //Document BoardUrl = Jsoup.connect("https://www.ptt.cc/bbs/" + urlName + "/index.html").get();
+                   //Elements contents = BoardUrl.select("#main-container div.r-list-container.action-bar-margin.bbs-screen a");
+
+
+
+           } catch (Exception e) {
+               System.out.println(e);
+           }
+       }
+   }
