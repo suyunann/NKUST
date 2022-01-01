@@ -18,6 +18,7 @@ import java.net.http.HttpResponse;
 import java.net.URI;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 /*
 https://tw.stock.yahoo.com/    Yahoo 股市//第一層
@@ -83,7 +84,7 @@ https://api.polygon.io/v1/meta/symbols/AAPL/company?apiKey=ul8wIcbn2k9cc3xdDNnIb
                    String title = head.getElementsByClass("_yb_1edlg").get(0).text();//抓"當日行情"標題名稱
                    Elements FirstTitleName =doc.select ("#ybar-navigation > div > ul > li:nth-child(3) > a");//抓上市類股網址(copy slector)
                    Element a = FirstTitleName.get(0);//存到a變數裡
-               System.out.println("標題："+title);
+               System.out.println(title);
                Document doc1 = Jsoup.connect(a.absUrl("href")).get();//從變數a裡提取"當日行情"網址
 
                    Elements SecondTitleName = doc1.select("#LISTED_STOCK > div > ul > li:nth-child(3) > div:nth-child(4) > a");//抓"半導體"網址
@@ -92,33 +93,28 @@ https://api.polygon.io/v1/meta/symbols/AAPL/company?apiKey=ul8wIcbn2k9cc3xdDNnIb
 
                Document doc2  = Jsoup.connect(b.absUrl("href")).get();//半導體頁面
                     Elements ThirdTitleName=doc2.select("#main-1-ClassQuotesTable-Proxy");//要抓的資料迴圈
-
+//"#main-1-ClassQuotesTable-Proxy"
+               //List(n)
 
 
                for (Element c : ThirdTitleName) {
 
+                   String  timee = c.getElementsByClass("C(#6e7780) Fz(14px) As(fe)").get(0).text();//資料時間
                    String StockName = c.getElementsByClass("Lh(20px) Fw(600) Fz(16px) Ell").get(0).text();//股票名字
                    String StockCodeNum = c.getElementsByClass("Fz(14px) C(#979ba7) Ell").get(0).text();//股票代號
                    String StockPrice = c.getElementsByClass("Jc(fe) Fw(600) D(f) Ai(c) C($c-trend-down)").get(0).text();//股價
-                   String StockUpandDown = c.getElementsByClass("Fw(600) Jc(fe) D(f) Ai(c) C($c-trend-down)").get(0).text();//漲跌(!!!待修) 需判斷漲跌
+                   String StockUpandDown = c.getElementsByClass("Fw(600) Jc(fe) D(f) Ai(c) C($c-trend-down)").get(0).text();//漲跌(!!!待修) 需判斷漲跌(有寫 trend down/up 用這判斷
+                   String StockPercentage = c.getElementsByClass("Fw(600) Jc(fe) D(f) Ai(c) C($c-trend-down)").get(1).text();//漲跌趴數(一樣待修
+                   String StockOpening = c.getElementsByClass("Jc(fe)").get(3).text();
+                   String StockClosing = c.getElementsByClass("Jc(fe)").get(4).text();
+                   String StockHighest = c.getElementsByClass("Jc(fe)").get(5).text();
+                  System.out.println(timee+"\n"+"股票名稱："+StockName+"股票代號："+StockCodeNum+"\n"+"股價："+StockPrice+"漲跌："+StockUpandDown+"漲跌趴數："+StockPercentage+"開盤："+StockOpening+"收盤："+StockClosing+"最高："+StockHighest);
+                   //System.out.println(StockHighest);
 
-                   String StockPercentage = c.getElementsByClass("").get(0).text();//漲跌趴數(一樣待修
-                   String StockOpening = c.getElementsByTag("").get(0).text();
-                   String StockClosing = c.getElementsByClass("").get(0).text();
-                   String StockHighest = c.getElementsByClass("").get(0).text();
-                   System.out.println(StockPrice);
 
 
 
                }
-
-
-
-
-
-                   //String urlName = head.getElementsByClass("board-name").get(0).text();////get next page's URL name;//"Baseball";//
-                   //Document BoardUrl = Jsoup.connect("https://www.ptt.cc/bbs/" + urlName + "/index.html").get();
-                   //Elements contents = BoardUrl.select("#main-container div.r-list-container.action-bar-margin.bbs-screen a");
 
 
 
