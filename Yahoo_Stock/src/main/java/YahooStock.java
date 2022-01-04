@@ -125,6 +125,7 @@ public class YahooStock {
                     String StockHighest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(8 + stockPlus).text();//最高 8
                     stockPlus = stockPlus + 5;
                     stockpercent = stockpercent + 2;
+                    //hi
                     //System.out.println(StockHighest);
 
                     //String List = c.getElementsByClass("List(n)").get(i+1).text();
