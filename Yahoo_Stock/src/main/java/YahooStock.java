@@ -105,8 +105,8 @@ public class stock {
                 System.out.println(timee);
                 int stockPlus = 0;
                 int stockpercent = 0;
-                int stockJc=0;
-                int stockTime=0;
+                int stockJc = 0;
+                int stockTime = 0;
                 for (int i = 0; i <= 5; i++) {
 
 
@@ -124,23 +124,23 @@ public class stock {
                     String StockClosing = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(7 + stockPlus).text();// 7
                     String StockHighest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(8 + stockPlus).text();// 8
                     String StockLowest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(9 + stockPlus).text();//9
-                    String StockVolume =c.getElementsByClass("Jc(fe)").get(7+ stockJc).text();
-                    String StockTime=c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(48px)").get(1 + stockTime).text();
+                    String StockVolume = c.getElementsByClass("Jc(fe)").get(7 + stockJc).text();
+                    String StockTime = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(48px)").get(1 + stockTime).text();
                     stockPlus = stockPlus + 5;//lc Miw(68px)
                     stockpercent = stockpercent + 2;//lc Miw(74px)
-                    stockJc= stockJc +8;
-                    stockTime=stockTime +8;//lc Miw(48px)
+                    stockJc = stockJc + 8;
+                    stockTime = stockTime + 1;//lc Miw(48px)
                     //System.out.println(StockHighest);
 
                     //String List = c.getElementsByClass("List(n)").get(i+1).text();
 
                     //System.out.println("   "+list);
-                    System.out.println("\n" + "股票名稱：" + StockName + " 股票代號：" + StockCodeNum + " 股價：" + StockPrice + " 漲跌：" + StockUpandDown + " 漲跌趴數：" + StockPercentage + " 開盤：" + StockOpening + " 收盤：" + StockClosing + " 最高：" + StockHighest +" 最低: "+StockLowest+" 成交量: "+StockVolume+ " 更新時間: "+StockTime);
+                    System.out.println("\n" + "股票名稱：" + StockName + " 股票代號：" + StockCodeNum + " 股價：" + StockPrice + " 漲跌：" + StockUpandDown + " 漲跌趴數：" + StockPercentage + " 開盤：" + StockOpening + " 收盤：" + StockClosing + " 最高：" + StockHighest + " 最低: " + StockLowest + " 成交量: " + StockVolume + " 更新時間: " + StockTime);
 
                 }
             }
 
-//3333333
+
         } catch (Exception e) {
             System.out.println(e);
         }
