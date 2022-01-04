@@ -132,7 +132,7 @@ public class YahooStock {
                     //System.out.println("   "+list);
                     System.out.println("\n" + "股票名稱：" + StockName + " 股票代號：" + StockCodeNum + " 股價：" + StockPrice + " 漲跌：" + StockUpandDown + " 漲跌趴數：" + StockPercentage + " 開盤：" + StockOpening + " 收盤：" + StockClosing + " 最高：" + StockHighest);
 
-
+//10000000000
                 }
             }
 
