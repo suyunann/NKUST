@@ -105,28 +105,32 @@ public class YahooStock {
             for (Element c : ThirdTitleName) {
                 String timee = c.getElementsByClass("C(#6e7780) Fz(14px) As(fe)").get(0).text();//資料時間
                 System.out.println(timee);
-                for (int i =0; i <= 4; i++) {
+                int stockPlus = 0;
+                int stockpercent = 0;
+                for (int i = 0; i <= 4; i++) {
 
 
-               // System.out.println("股票名稱 "+"股票代號 "+"股價 "+" 漲跌 "+" 漲跌趴數 "+"開盤 "+"收盤 "+"最高 "+"最低 "+"成交量 "+"時間 ");
+                    // System.out.println("股票名稱 "+"股票代號 "+"股價 "+" 漲跌 "+" 漲跌趴數 "+"開盤 "+"收盤 "+"最高 "+"最低 "+"成交量 "+"時間 ");
 
                     //String  TrendVariable=c.getElementsByClass("");
 
                     String StockName = c.getElementsByClass("Lh(20px) Fw(600) Fz(16px) Ell").get(i).text();//股票名字
                     String StockCodeNum = c.getElementsByClass("Fz(14px) C(#979ba7) Ell").get(i).text();//股票代號
 
-                    String StockPrice = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(5).text();//股價
-                    String StockUpandDown = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(74px)").get(2).text();//漲跌(!!!待修) 需判斷漲跌(有寫 trend down/up 用這判斷
-                    String StockPercentage = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(74px)").get(3).text();//漲跌趴數(一樣待修
-                    String StockOpening = c.getElementsByClass("Jc(fe)").get(3).text();//get 3
-                    String StockClosing = c.getElementsByClass("Jc(fe)").get(4).text();//get 4
-                    String StockHighest = c.getElementsByClass("Jc(fe)").get(5).text();//get 5
-
+                    String StockPrice = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(5 + stockPlus).text();//股價 5
+                    String StockUpandDown = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(74px)").get(2 + stockpercent).text();//漲跌 2
+                    String StockPercentage = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(74px)").get(3 + stockpercent).text();//漲跌趴數 3
+                    String StockOpening = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(6 + stockPlus).text();//開盤 6
+                    String StockClosing = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(7 + stockPlus).text();// 7
+                    String StockHighest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(8 + stockPlus).text();// 8
+                    stockPlus = stockPlus + 5;
+                    stockpercent = stockpercent + 2;
+                    //System.out.println(StockHighest);
 
                     //String List = c.getElementsByClass("List(n)").get(i+1).text();
 
                     //System.out.println("   "+list);
-                   System.out.println( "\n" + "股票名稱：" + StockName + " 股票代號：" + StockCodeNum  + " 股價：" + StockPrice + " 漲跌：" + StockUpandDown + " 漲跌趴數：" + StockPercentage + " 開盤：" + StockOpening + " 收盤：" + StockClosing + " 最高：" + StockHighest);
+                    System.out.println("\n" + "股票名稱：" + StockName + " 股票代號：" + StockCodeNum + " 股價：" + StockPrice + " 漲跌：" + StockUpandDown + " 漲跌趴數：" + StockPercentage + " 開盤：" + StockOpening + " 收盤：" + StockClosing + " 最高：" + StockHighest);
 
 
                 }
