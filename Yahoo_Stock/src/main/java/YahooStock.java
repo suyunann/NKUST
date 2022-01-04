@@ -129,7 +129,7 @@ public class stock {
                     stockPlus = stockPlus + 5;//lc Miw(68px)
                     stockpercent = stockpercent + 2;//lc Miw(74px)
                     stockJc= stockJc +8;
-                    stockTime=stockTime +8;//lc Miw(48px)
+                    stockTime=stockTime +1;//lc Miw(48px)
                     //System.out.println(StockHighest);
 
                     //String List = c.getElementsByClass("List(n)").get(i+1).text();
