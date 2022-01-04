@@ -107,7 +107,7 @@ public class YahooStock {
                 System.out.println(timee);
                 int stockPlus = 0;
                 int stockpercent = 0;
-                for (int i = 0; i <= 4; i++) {
+                for (int i = 0; i <= 76; i++) {
 
 
                     // System.out.println("股票名稱 "+"股票代號 "+"股價 "+" 漲跌 "+" 漲跌趴數 "+"開盤 "+"收盤 "+"最高 "+"最低 "+"成交量 "+"時間 ");
@@ -121,8 +121,8 @@ public class YahooStock {
                     String StockUpandDown = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(74px)").get(2 + stockpercent).text();//漲跌 2
                     String StockPercentage = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(74px)").get(3 + stockpercent).text();//漲跌趴數 3
                     String StockOpening = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(6 + stockPlus).text();//開盤 6
-                    String StockClosing = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(7 + stockPlus).text();// 7
-                    String StockHighest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(8 + stockPlus).text();// 8
+                    String StockClosing = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(7 + stockPlus).text();//收盤 7
+                    String StockHighest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(8 + stockPlus).text();//最高 8
                     stockPlus = stockPlus + 5;
                     stockpercent = stockpercent + 2;
                     //System.out.println(StockHighest);
