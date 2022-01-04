@@ -139,7 +139,7 @@ public class stock {
 
                 }
             }
-
+//00000000000
 
         } catch (Exception e) {
             System.out.println(e);
