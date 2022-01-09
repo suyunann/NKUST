@@ -4,23 +4,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
-import javax.print.Doc;
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URI;
-
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-
 /*
 https://tw.stock.yahoo.com/    Yahoo 股市//第一層
 
@@ -102,12 +85,16 @@ public class stock {
 
             for (Element c : ThirdTitleName) {
                 String timee = c.getElementsByClass("C(#6e7780) Fz(14px) As(fe)").get(0).text();//資料時間
+                Elements Stocklink=c.select("#main-1-ClassQuotesTable-Proxy a");
+
                 System.out.println(timee);
+
                 int stockPlus = 0;
                 int stockpercent = 0;
                 int stockJc = 0;
                 int stockTime = 0;
-                for (int i = 0; i <= 5; i++) {
+                int stocklink=0;
+                for (int i = 0; i <10; i++) {
 
 
                     // System.out.println("股票名稱 "+"股票代號 "+"股價 "+" 漲跌 "+" 漲跌趴數 "+"開盤 "+"收盤 "+"最高 "+"最低 "+"成交量 "+"時間 ");
@@ -116,27 +103,32 @@ public class stock {
 
                     String StockName = c.getElementsByClass("Lh(20px) Fw(600) Fz(16px) Ell").get(i).text();//股票名字
                     String StockCodeNum = c.getElementsByClass("Fz(14px) C(#979ba7) Ell").get(i).text();//股票代號
-
                     String StockPrice = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(5 + stockPlus).text();//股價 5
                     String StockUpandDown = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(74px)").get(2 + stockpercent).text();//漲跌 2
                     String StockPercentage = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(74px)").get(3 + stockpercent).text();//漲跌趴數 3
                     String StockOpening = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(6 + stockPlus).text();//開盤 6
-                    String StockClosing = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(7 + stockPlus).text();// 7
-                    String StockHighest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(8 + stockPlus).text();// 8
-                    String StockLowest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(9 + stockPlus).text();//9
-                    String StockVolume = c.getElementsByClass("Jc(fe)").get(7 + stockJc).text();
-                    String StockTime = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(48px)").get(1 + stockTime).text();
+                    String StockClosing = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(7 + stockPlus).text();//收盤 7
+                    String StockHighest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(8 + stockPlus).text();//最高 8
+                    String StockLowest = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(68px)").get(9 + stockPlus).text();//最低 9
+                    String StockVolume = c.getElementsByClass("Jc(fe)").get(7 + stockJc).text();//交易量
+                    String StockTime = c.getElementsByClass("Fxg(1) Fxs(1) Fxb(0%) Ta(end) Mend($m-table-cell-space) Mend(0):lc Miw(48px)").get(1+stockTime).text();//更新時間
+                    Element link=Stocklink.get(0+stocklink);//該股票網址
+
+
+
+
                     stockPlus = stockPlus + 5;//lc Miw(68px)
                     stockpercent = stockpercent + 2;//lc Miw(74px)
                     stockJc = stockJc + 8;
                     stockTime = stockTime + 1;//lc Miw(48px)
-                    //System.out.println(StockHighest);
+                    stocklink=stocklink+1;
+
 
                     //String List = c.getElementsByClass("List(n)").get(i+1).text();
 
                     //System.out.println("   "+list);
                     System.out.println("\n" + "股票名稱：" + StockName + " 股票代號：" + StockCodeNum + " 股價：" + StockPrice + " 漲跌：" + StockUpandDown + " 漲跌趴數：" + StockPercentage + " 開盤：" + StockOpening + " 收盤：" + StockClosing + " 最高：" + StockHighest + " 最低: " + StockLowest + " 成交量: " + StockVolume + " 更新時間: " + StockTime);
-
+                    System.out.println("網址:"+link.absUrl("href"));
                 }
             }
 
