@@ -127,9 +127,8 @@ public class stock {
                     //String List = c.getElementsByClass("List(n)").get(i+1).text();
 
                     //System.out.println("   "+list);
-                    System.out.println("\n" + "股票名稱：" + StockName + " 股票代號：" + StockCodeNum + " 股價：" + StockPrice + " 漲跌：" + StockUpandDown + " 漲跌趴數：" + StockPercentage + " 開盤：" + StockOpening + " 收盤：" + StockClosing + " 最高：" + StockHighest + " 最低: " + StockLowest + " 成交量: " + StockVolume + " 更新時間: " + StockTime);
-                    System.out.println("網址:"+link.absUrl("href"));
-                }
+                    System.out.println("\n" + "股票名稱：" + StockName + " 股票代號：" + StockCodeNum + " 股價：" + StockPrice + " 漲跌：" + StockUpandDown + " 漲跌趴數：" + StockPercentage + " 開盤：" + StockOpening + " 收盤：" + StockClosing + " 最高：" + StockHighest + " 最低: " + StockLowest + " 成交量: " + StockVolume + " 更新時間: " + StockTime+"\n"+"網址:"+link.absUrl("href"));
+
             }
 
 
